@@ -6,7 +6,7 @@ import * as ROUTES from "../constants/routes";
 import Main from './Main';
 import Error404 from "./Error404";
 
-import './../assets/App.css';
+import '../assets/css/App.css';
 
 class App extends Component {
   constructor(props) {
