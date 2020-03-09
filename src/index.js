@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import gameReducer from './reducers/game-reducer';
+import App from './components/App';
+import * as serviceWorker from './serviceWorker';
 
 import './assets/css/index.css';
 
-import App from './components/App';
+const initialState = {
+    history: [{squares: [null, null, null, null, null, null, null, null, null]}]
+}
 
-import * as serviceWorker from './serviceWorker';
-
-const store = createStore(gameReducer);
-
+const store = createStore(gameReducer, initialState);
 
 ReactDOM.render(
         <Provider store={store}>
