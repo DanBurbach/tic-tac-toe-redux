@@ -9,7 +9,8 @@ import * as serviceWorker from './serviceWorker';
 import './assets/css/index.css';
 
 const initialState = {
-    history: [{squares: [null, null, null, null, null, null, null, null, null]}]
+    history: [{squares: [null, null, null, null, null, null, null, null, null]}],
+    xIsNext: true
 }
 
 const store = createStore(gameReducer, initialState);
