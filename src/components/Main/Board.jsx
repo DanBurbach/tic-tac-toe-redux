@@ -1,7 +1,6 @@
 import React from "react";
 import Square from "./Square";
-import PropTypes from "prop-types";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import calculateWinner from "./CalcWinner.jsx";
 import "../../assets/css/styles.css";
@@ -10,23 +9,23 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: Array(9).fill(null),
+      // squares: Array(9).fill(null),
       xIsNext: true
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(i) {
+  handleClick(boxId) {
     const gameState = {...this.props.gameState};
     const latestGame = {...this.props.latestGame};
 
     const { dispatch } = this.props;
 
-    if(calculateWinner(latestGame.squares) || latestGame.squares[i]){
+    if (calculateWinner(latestGame.squares) || latestGame.squares[boxId]){
       return;
     }
 
-    latestGame.squares[i] = (gameState.xIsNext ? 'X' : 'O');
+    latestGame.squares[boxId] = (gameState.xIsNext ? 'X' : 'O');
     gameState.xIsNext = !gameState.xIsNext;
 
     const action = {
@@ -41,23 +40,23 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
+        value={this.props.latestGame.squares[i]}
+        onClick={() => this.handleClick(i)}
       />
     );
   }
 
   render() {
-    // const winner = calculateWinner(this.state.squares);
-    // let status;
-    // if (winner) {
-    //   status = "Winner: " + winner;
-    // } else {
-    //   status = "Next player: " + (this.state.xIsNext ? "X" : "O");
-    // }
+    const winner = calculateWinner(this.props.latestGame.squares);
+    let status;
+    if (winner) {
+      status = "Winner: " + winner;
+    } else {
+      status = "Next player: " + (this.props.gameState.xIsNext ? "X" : "O");
+    }
     return (
-      <div>
-        {/* <div className="status">{status}</div> */}
+      <div className="main-board">
+        <div className="status">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -78,9 +77,11 @@ class Board extends React.Component {
   }
 }
 
-Board.propTypes = {
-  squares: PropTypes.array,
-  onClick: PropTypes.func
-};
+const mapStateToProps = state => {
+  return {
+    gameState: state,
+    latestGame: state.history[state.history.length - 1]
+  };
+}
 
-export default Board;
+export default connect(mapStateToProps)(Board);
