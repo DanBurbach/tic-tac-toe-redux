@@ -1,3 +1,11 @@
+const initialState = {
+        history: [{
+            squares: [null, null, null, null, null, null, null, null, null]
+        }],
+        xIsNext: true
+    }
+
+
 export default (state, action) => {
     switch (action.type) {
         case 'PLAYER_MOVE':
@@ -8,6 +16,9 @@ export default (state, action) => {
                     squares: addPlay
                 }])
             }
+        case 'RESET_GAME': {
+            return initialState;
+        }
         default:
             return state;
     }
