@@ -1,8 +1,9 @@
 const initialState = {
         history: [{
-            squares: [null, null, null, null, null, null, null, null, null]
+            squares: Array(9).fill(null)
         }],
-        xIsNext: true
+        xIsNext: true,
+        playerLose: false
     }
 
 

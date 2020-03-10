@@ -1,5 +1,7 @@
 body {
   font-size: 6vh;
+  color: #2c3e52;
+  background-color: #7777;
 }
 
 .main-board {
@@ -10,29 +12,25 @@ body {
   box-sizing: border-box;
 }
 
-.board-row:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
 .status {
   margin-bottom: 5vh;
 }
 
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background-color: #7777;
+  border: 0.25vh solid #7777;
+  border-radius: 0.125em;
   float: left;
-  font-size: 1em;
+  font-size: 2em;
   font-weight: bold;
-  line-height: 0.25em;
-  height: 2vh;
-  margin-right: -2px;
-  margin-top: -2px;
-  padding: 1em;
-  text-align: center;
-  width: 2vw;
+  line-height: 2vh;
+  height: 1.5em;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0.25em;
+  width: 1.5em;
+  color: #fff;
+  text-shadow: 2px 2px 2px black;
 }
 
 .square:focus {
@@ -40,5 +38,24 @@ body {
 }
 
 .kbd-navigation .square:focus {
-  background: #ddd;
+  background: #7777;
+}
+
+.resetButton {
+  text-align: center;
+  border: none;
+  padding: 0.2em 4.5vw;
+  background: #2c3e52;
+  color: #fff;
+  font-size: 4vh;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  margin: 3vh;
+  border-radius: 0.25em;
+}
+
+.resetButton:hover {
+  background: #ed4e6e;
 }

@@ -1,28 +1,36 @@
 import calculateWinner from '../Main/CalcWinner';
+import React, { Component } from "react";
 
-function bestMove() {
-    // AI to make its turn
-    let bestScore = -Infinity;
-    let move;
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            // Is the spot available?
-            if (board[i][j] == "") {
-            board[i][j] = ai;
-            let score = minimax(board, 0, false);
-            board[i][j] = "";
-            if (score > bestScore) {
-                bestScore = score;
-                move = { i, j };
-            }
-            }
-        }
-    }
-    board[move.i][move.j] = ai;
-    currentPlayer = human;
-}
+class BestMove extends Component {
+  constructor(board, depth, isMaximizing) {
+    this.bestPlacement = null;
+    this.minimax(board, depth, isMaximizing);
+    return this.bestPlacement;
+  }
 
-function minimax(board, depth, isMaximizing) {
+// function bestMove() {
+//     // AI to make its turn
+//     let bestScore = -Infinity;
+//     let move;
+//     for (let i = 0; i < 3; i++) {
+//         for (let j = 0; j < 3; j++) {
+//             // Is the spot available?
+//             if (board[i][j] == "") {
+//             board[i][j] = ai;
+//             let score = minimax(board, 0, false);
+//             board[i][j] = "";
+//             if (score > bestScore) {
+//                 bestScore = score;
+//                 move = { i, j };
+//             }
+//             }
+//         }
+//     }
+//     board[move.i][move.j] = ai;
+//     currentPlayer = human;
+// }
+
+minimax(board, depth, isMaximizing) {
     let scores = {
       X: 10,
       O: -10,
@@ -63,5 +71,6 @@ function minimax(board, depth, isMaximizing) {
     return bestScore;
   }
 }
+}
 
-export default bestMove;
+export default BestMove;

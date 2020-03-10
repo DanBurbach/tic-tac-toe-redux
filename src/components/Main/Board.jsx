@@ -9,11 +9,15 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // squares: Array(9).fill(null),
-      // xIsNext: true
+      // human: null,
+      // computer: null,
+      // playerLose: false,
+
     };
     this.handleClick = this.handleClick.bind(this);
     this.resetGame = this.resetGame.bind(this);
+    // this.minimax = this.minimax.bind(this);
+    // this.bestMove = this.bestMove.bind(this);
   }
 
   // bestMove = () => {
@@ -25,7 +29,7 @@ class Board extends React.Component {
   //             // Is the spot available?
   //             if (board[i][j] == "") {
   //             board[i][j] = ai;
-  //             let score = minimax(board, 0, false);
+  //             let score = this.minimax(board, 0, false);
   //             board[i][j] = "";
   //             if (score > bestScore) {
   //                 bestScore = score;
@@ -56,7 +60,7 @@ class Board extends React.Component {
   //         // Is the spot available?
   //         if (board[i][j] == "") {
   //           board[i][j] = ai;
-  //           let score = minimax(board, depth + 1, false);
+  //           let score = this.minimax(board, depth + 1, false);
   //           board[i][j] = "";
   //           bestScore = max(score, bestScore);
   //         }
@@ -70,7 +74,7 @@ class Board extends React.Component {
   //         // Is the spot available?
   //         if (board[i][j] == "") {
   //           board[i][j] = human;
-  //           let score = minimax(board, depth + 1, true);
+  //           let score = this.minimax(board, depth + 1, true);
   //           board[i][j] = "";
   //           bestScore = min(score, bestScore);
   //         }
@@ -79,6 +83,57 @@ class Board extends React.Component {
   //     return bestScore;
   //   }
   // }
+
+  // miniMax = (board, turn) => {
+  //   const { human, computer } = this.state;
+  //   const newBoard = [...board];
+  //   const emptySquares = this.findEmptySquares(newBoard);
+  //   const moves = [];
+
+  //   if (this.checkWin(newBoard, human)) {
+  //     return { score: -10 };
+  //   } else if (this.checkWin(newBoard, computer)) {
+  //     return { score: 10 };
+  //   } else if (emptySquares.length === 0) {
+  //     return { score: 0 };
+  //   }
+
+  //   for (let i = 0; i < emptySquares.length; i++) {
+  //     const move = {};
+  //     move.index = emptySquares[i];
+  //     newBoard[emptySquares[i]] = turn;
+
+  //     if (turn === computer) {
+  //       const result = this.miniMax(newBoard, human);
+  //       move.score = result.score;
+  //     } else {
+  //       const result = this.miniMax(newBoard, computer);
+  //       move.score = result.score;
+  //     }
+  //     newBoard[emptySquares[i]] = move.index;
+  //     moves.push(move);
+  //   }
+
+  //   let bestMove;
+  //   if (turn === computer) {
+  //     let bestScore = -10000;
+  //     for (let i = 0; i < moves.length; i++) {
+  //       if (moves[i].score > bestScore) {
+  //         bestScore = moves[i].score;
+  //         bestMove = i;
+  //       }
+  //     }
+  //   } else {
+  //     let bestScore = 10000;
+  //     for (let i = 0; i < moves.length; i++) {
+  //       if (moves[i].score < bestScore) {
+  //         bestScore = moves[i].score;
+  //         bestMove = i;
+  //       }
+  //     }
+  //   }
+  //   return moves[bestMove];
+  // };
 
   handleClick(boxId) {
     const gameState = { ...this.props.gameState };
