@@ -180,22 +180,24 @@ class Board extends React.Component {
       status = "Next player: " + (this.props.gameState.xIsNext ? "X" : "O");
     }
     return (
-      <div className="main-board">
+      <div className="pageWrapper">
         <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
+        <div className="main-board">
+          <div className="board-row">
+            <div className="hover-point">{this.renderSquare(0)}</div>
+            <div className="hover-point">{this.renderSquare(1)}</div>
+            <div className="hover-point">{this.renderSquare(2)}</div>
+          </div>
+          <div className="board-row">
+            <div className="hover-point">{this.renderSquare(3)}</div>
+            <div className="hover-point">{this.renderSquare(4)}</div>
+            <div className="hover-point">{this.renderSquare(5)}</div>
+          </div>
+          <div className="board-row">
+            <div className="hover-point">{this.renderSquare(6)}</div>
+            <div className="hover-point">{this.renderSquare(7)}</div>
+            <div className="hover-point">{this.renderSquare(8)}</div>
+          </div>
         </div>
         <div className="reset">
           <button className="resetButton" onClick={this.resetGame}>
